@@ -1,11 +1,14 @@
 import './App.css'
-import config from './config/config'
+import { Header, Footer } from './components/index.js'
+
 
 function App() {
 
   return (
     <>
-      
+      <Header />
+      <p>Hello World!</p>
+      <Footer />
     </>
   )
 }
