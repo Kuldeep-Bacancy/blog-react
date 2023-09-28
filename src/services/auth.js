@@ -27,7 +27,7 @@ const login = async (email, password) => {
 const logout = async () => {
   const response = await axios.delete(`${API_URL}/logout`, { headers: authHeader() });
 
-  if (response.data.success_code === 200){
+  if (response.data.status_code === 200){
     localStorage.removeItem("token");
   }
 }

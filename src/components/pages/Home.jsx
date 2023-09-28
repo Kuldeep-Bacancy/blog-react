@@ -12,7 +12,6 @@ function Home() {
     article.getArticles()
     .then((articles) => {
       if (articles) {
-        console.log(articles);
         setArticles(articles.data)
       }
     })
