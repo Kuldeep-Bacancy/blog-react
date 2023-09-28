@@ -5,12 +5,15 @@ import './index.css'
 import { Provider } from 'react-redux'
 import store from './store/store.js'
 import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom'
+import Login from './components/pages/Login.jsx'
+import Home from './components/pages/Home.jsx'
 
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />} >
-      
+      <Route path="/" element={<Home />} />
+      <Route path="/login" element={<Login />} />
     </Route>
   )
 )
