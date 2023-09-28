@@ -5,7 +5,7 @@ import authHeader from "./authHeader";
 const API_URL = config.backendURL
 
 
-const articles = async () => {
+const getArticles = async () => {
   const response = await axios.get(`${API_URL}/articles`, { headers: authHeader() })
 
   return response.data;
@@ -36,6 +36,6 @@ const deleteArticle = async (articleID) => {
 }
 
 
-const articleService = { articles, createArticle, updateArticle, deleteArticle }
+const articleService = { getArticles, createArticle, updateArticle, deleteArticle }
 
 export default articleService
