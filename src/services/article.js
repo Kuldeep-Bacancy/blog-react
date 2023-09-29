@@ -4,17 +4,27 @@ import authHeader from "./authHeader";
 
 const API_URL = config.backendURL
 
+const headers = {
+  headers: authHeader()
+}
+
 
 const getArticles = async () => {
-  const response = await axios.get(`${API_URL}/articles`, { headers: authHeader() })
+  const response = await axios.get(`${API_URL}/articles`, headers)
 
   return response.data;
+}
+
+const getArticle = async (id) => {
+  const response = await axios.get(`${API_URL}/article/${id}`, headers)
+
+  return response.data
 }
 
 const createArticle = async (article) => {
   const response = await axios.post(`${API_URL}/articles`, {
     article: article
-  }, { headers: authHeader() })
+  }, headers)
 
   return response.data
 }
@@ -22,7 +32,7 @@ const createArticle = async (article) => {
 const updateArticle = async (article, articleID) => {
   const response = await axios.patch(`${API_URL}/articles/${articleID}`, {
     article: article
-  }, { headers: authHeader() })
+  }, headers)
 
   return response.data
 }
@@ -30,12 +40,12 @@ const updateArticle = async (article, articleID) => {
 const deleteArticle = async (articleID) => {
   const response = await axios.delete(`${API_URL}/articles/${articleID}`, {
     article: article
-  }, { headers: authHeader() })
+  }, headers)
 
   return response.data
 }
 
 
-const articleService = { getArticles, createArticle, updateArticle, deleteArticle }
+const articleService = { getArticles, createArticle, updateArticle, deleteArticle, getArticle }
 
 export default articleService

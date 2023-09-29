@@ -5,7 +5,7 @@ import Logo from "./Logo";
 import Login from "./pages/Login";
 import Button from "./Button";
 import Input from "./Input";
-
+import Select from './Select'
 export {
   Header,
   Footer,
@@ -13,5 +13,6 @@ export {
   Logo,
   Login,
   Button,
-  Input
+  Input,
+  Select
 }
