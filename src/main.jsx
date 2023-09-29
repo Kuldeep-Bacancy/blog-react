@@ -7,6 +7,7 @@ import store from './store/store.js'
 import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom'
 import Login from './components/pages/Login.jsx'
 import Home from './components/pages/Home.jsx'
+import Signup from './components/pages/Signup.jsx'
 
 
 const router = createBrowserRouter(
@@ -14,6 +15,7 @@ const router = createBrowserRouter(
     <Route path="/" element={<App />} >
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
+      <Route path='/signup' element={<Signup />} />
     </Route>
   )
 )

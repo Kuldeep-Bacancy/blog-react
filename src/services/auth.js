@@ -5,12 +5,14 @@ import authHeader from "./authHeader";
 const API_URL = config.backendURL
 
 const register = async (email, password) => {
-  return axios.post(`${API_URL}/signup`, {
+  const response = await axios.post(`${API_URL}/signup`, {
     user: {
       email: email,
       password: password,
     }
   });
+
+  return response.data;
 };
 
 const login = async (email, password) => {
@@ -30,6 +32,8 @@ const logout = async () => {
   if (response.data.status_code === 200){
     localStorage.removeItem("token");
   }
+
+  return response.data;
 }
 
 
