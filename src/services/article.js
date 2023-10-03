@@ -16,7 +16,7 @@ const getArticles = async () => {
 }
 
 const getArticle = async (id) => {
-  const response = await axios.get(`${API_URL}/article/${id}`, headers)
+  const response = await axios.get(`${API_URL}/articles/${id}`, headers)
 
   return response.data
 }
@@ -38,10 +38,8 @@ const updateArticle = async (article, articleID) => {
 }
 
 const deleteArticle = async (articleID) => {
-  const response = await axios.delete(`${API_URL}/articles/${articleID}`, {
-    article: article
-  }, headers)
-
+  const response = await axios.delete(`${API_URL}/articles/${articleID}`, headers)
+    
   return response.data
 }
 

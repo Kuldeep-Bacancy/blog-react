@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import article from '../../services/article'
-import { Container } from '../index' 
+import { Container, PostCard } from '../index' 
 import { useSelector } from 'react-redux'
 
 
@@ -25,7 +25,7 @@ function Home() {
           <div className="flex flex-wrap">
             <div className="p-2 w-full">
               <h1 className="text-2xl font-bold hover:text-gray-500">
-                {isLoggedin ? 'No Posts available to read!' : 'Please Login to read posts!' }
+                {isLoggedin ? 'No Articles available to read!' : 'Please Login to read posts!' }
               </h1>
             </div>
           </div>
@@ -38,8 +38,8 @@ function Home() {
       <Container>
         <div className='flex flex-wrap'>
           {articles.map((article) => (
-            <div key={article.$id} className='p-2 w-1/4'>
-              {/* <PostCard {...post} /> */}
+            <div key={article.id} className='p-2 w-1/4'>
+              <PostCard {...article} />
             </div>
           ))}
         </div>
