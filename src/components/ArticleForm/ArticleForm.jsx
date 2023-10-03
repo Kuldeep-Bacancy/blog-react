@@ -17,16 +17,16 @@ export default function ArticleForm({ article }) {
 
   const submit = async (data) => {
     if (article) {
-      response = await articleService.updateArticle(data)
+      const response = await articleService.updateArticle(data, article.id)
 
       if (response.status_code === 200) {
-        navigate(`/article/${dbArticle.id}`);
+        navigate(`/article/${response.data.id}`);
       }
     } else {
-      response = await articleService.createArticle(data)
+      const response = await articleService.createArticle(data)
 
       if (response.status_code === 200) {
-        navigate(`/article/${dbArticle.id}`);
+        navigate(`/article/${response.data.id}`);
       }
     }
   };
