@@ -8,7 +8,11 @@ import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route } 
 import Login from './components/pages/Login.jsx'
 import Home from './components/pages/Home.jsx'
 import Signup from './components/pages/Signup.jsx'
-
+import AllArticles from './components/pages/AllArticles.jsx'
+import AddArticle from './components/pages/AddArticle.jsx'
+import EditArticle from './components/pages/EditArticle.jsx'
+import Article from './components/pages/Article.jsx'
+import AuthLayout from './components/AuthLayout.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -16,6 +20,26 @@ const router = createBrowserRouter(
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path='/signup' element={<Signup />} />
+      <Route path='/all-articles' element={
+        <AuthLayout>
+          <AllArticles />
+        </AuthLayout>
+      } />
+      <Route path='/add-article' element={
+        <AuthLayout>
+          <AddArticle />
+        </AuthLayout>
+      } />
+      <Route path='/edit-article/:id' element={
+        <AuthLayout>
+          <EditArticle />
+        </AuthLayout>
+      } />
+      <Route path='/article/:id' element={
+        <AuthLayout>
+        <Article />
+        </AuthLayout>
+      } />
     </Route>
   )
 )
