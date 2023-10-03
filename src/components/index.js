@@ -6,6 +6,11 @@ import Login from "./pages/Login";
 import Button from "./Button";
 import Input from "./Input";
 import Select from './Select'
+import RTE from "./RTE";
+import PostCard from "./PostCard"
+import ArticleForm from "./ArticleForm/ArticleForm";
+import AuthLayout from "./AuthLayout"
+
 export {
   Header,
   Footer,
@@ -14,5 +19,9 @@ export {
   Login,
   Button,
   Input,
-  Select
+  Select,
+  RTE,
+  PostCard,
+  ArticleForm,
+  AuthLayout
 }

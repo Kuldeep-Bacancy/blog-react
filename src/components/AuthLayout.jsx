@@ -5,13 +5,11 @@ import { useNavigate } from 'react-router-dom'
 function AuthLayout({children}) {
   const navigate = useNavigate();
   const [loader, setLoader] = useState(true);
-  const authStatus = useSelector(state => state.auth.isLoggedin)
+  const authStatus = useSelector(state => state.authentication.isLoggedin)
 
   useEffect(() => {
     if(authStatus === false){
       navigate('/login')
-    } else {
-      navigate('/')
     }
     setLoader(false)
   },[authStatus, navigate])
