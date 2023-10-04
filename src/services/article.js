@@ -22,6 +22,10 @@ const getArticle = async (id) => {
 }
 
 const createArticle = async (article) => {
+  if (article.image) {
+    headers["headers"]["Content-Type"] = "multipart/form-data"
+  }
+
   const response = await axios.post(`${API_URL}/articles`, {
     article: article
   }, headers)
@@ -30,6 +34,10 @@ const createArticle = async (article) => {
 }
 
 const updateArticle = async (article, articleID) => {
+  if(article.image){
+    headers["headers"]["Content-Type"] = "multipart/form-data"
+  }
+
   const response = await axios.patch(`${API_URL}/articles/${articleID}`, {
     article: article
   }, headers)

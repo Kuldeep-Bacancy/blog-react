@@ -20,13 +20,15 @@ export default function ArticleForm({ article }) {
 
   const submit = async (data) => {
     if (article) {
-      const response = await articleService.updateArticle(data, article.id)
+      const newData = { ...data, image: data.image[0] }
+      const response = await articleService.updateArticle(newData, article.id)
 
       if (response.status_code === 200) {
         navigate(`/article/${response.data.id}`);
       }
     } else {
-      const response = await articleService.createArticle(data)
+      const newData = { ...data, image: data.image[0]}
+      const response = await articleService.createArticle(newData)
 
       if (response.status_code === 200) {
         navigate(`/article/${response.data.id}`);
