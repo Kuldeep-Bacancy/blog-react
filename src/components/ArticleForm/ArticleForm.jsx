@@ -3,15 +3,18 @@ import { useForm } from "react-hook-form";
 import { Button, Input, RTE } from "..";
 import { useNavigate } from "react-router-dom";
 import articleService from "../../services/article";
+import ErrorMessage from "../ErrorMessage";
 
 export default function ArticleForm({ article }) {
-  const { register, handleSubmit, watch, setValue, control, getValues } = useForm({
+  const { register, handleSubmit, watch, setValue, control, getValues, formState } = useForm({
     defaultValues: {
       title: article?.attributes?.title || "",
       slug: article?.attributes?.slug || "",
       content: article?.attributes?.content || ""
     },
   });
+
+  const { errors } = formState;
 
   const navigate = useNavigate();
 
@@ -59,17 +62,19 @@ export default function ArticleForm({ article }) {
           label="Title :"
           placeholder="Title"
           className="mb-4"
-          {...register("title", { required: true })}
+          {...register("title", { required: "Title is required!" })}
         />
+        <ErrorMessage message={ errors.title?.message } />
         <Input
           label="Slug :"
           placeholder="Slug"
           className="mb-4"
-          {...register("slug", { required: true })}
+          {...register("slug", { required: "Slug is required!" })}
           onInput={(e) => {
             setValue("slug", slugTransform(e.currentTarget.value), { shouldValidate: true });
           }}
         />
+        <ErrorMessage message={errors.slug?.message} />
         <RTE label="Content :" name="content" control={control} defaultValue={getValues("content")} />
       </div>
       <div className="w-1/3 px-2">
