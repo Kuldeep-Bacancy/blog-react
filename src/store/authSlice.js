@@ -16,7 +16,7 @@ const authSlice = createSlice({
     login: (state, action) => {
       state.token = action.payload.token,
       state.isLoggedin = true
-      state.userData = action.payload
+      state.userData = jwt(action.payload.token)
     },
     logout: (state) => {
       state.token = "",
