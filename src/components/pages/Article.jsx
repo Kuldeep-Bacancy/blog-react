@@ -39,7 +39,7 @@ export default function Article() {
       <Container>
         <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
           <img
-            src={article.data.attributes.image}
+            src={article.data.attributes.image || "https://images.unsplash.com/photo-1586943759341-be5595944989?crop=entropy&cs=srgb&fm=jpg&ixid=M3w1MDE1MDB8MHwxfHNlYXJjaHwyNHx8YXJ0aWNsZXxlbnwwfHx8fDE2OTYzOTQxNTN8MA&ixlib=rb-4.0.3&q=85"}
             alt={article.data.attributes.title}
             className="rounded-xl"
           />

@@ -83,7 +83,7 @@ export default function ArticleForm({ article }) {
         {article && (
           <div className="w-full mb-4">
             <img
-              src={article?.attributes?.image}
+              src={article?.attributes?.image || "https://images.unsplash.com/photo-1586943759341-be5595944989?crop=entropy&cs=srgb&fm=jpg&ixid=M3w1MDE1MDB8MHwxfHNlYXJjaHwyNHx8YXJ0aWNsZXxlbnwwfHx8fDE2OTYzOTQxNTN8MA&ixlib=rb-4.0.3&q=85"}
               alt={article?.attributes?.title}
               className="rounded-lg"
             />
