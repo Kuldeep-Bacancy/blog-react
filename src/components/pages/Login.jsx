@@ -5,12 +5,13 @@ import { useDispatch } from 'react-redux'
 import { useForm } from "react-hook-form"
 import { Button, Input, Logo } from "../index"
 import { Link, useNavigate } from 'react-router-dom'
-
+import ErrorMessage from '../ErrorMessage'
 
 function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, formState } = useForm();
+  const { errors } = formState;
   const [error, setError] = useState('')
 
 
@@ -61,21 +62,23 @@ function Login() {
               placeholder="Enter your email"
               type="email"
               {...register("email", {
-                required: true,
+                required: "Email is required!",
                 validate: {
                   matchPatern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
                     "Email address must be a valid address",
                 }
               })}
             />
+            <ErrorMessage message={errors.email?.message}/>
             <Input
               label="Password: "
               type="password"
               placeholder="Enter your password"
               {...register("password", {
-                required: true,
+                required: "Password is required!"
               })}
             />
+            <ErrorMessage message={errors.password?.message} />
             <Button
               type="submit"
               className="w-full"
