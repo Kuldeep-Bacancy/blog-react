@@ -1,52 +1,38 @@
-import axios from "axios";
 import config from '../config/config';
-import authHeader from "./authHeader";
+import { axiosPrivate } from "../common/axiosPrivate.js";
 
 const API_URL = config.backendURL
 
-const headers = {
-  headers: authHeader()
-}
-
-
 const getArticles = async () => {
-  const response = await axios.get(`${API_URL}/articles`, headers)
+  const response = await axiosPrivate.get(`${API_URL}/articles`)
 
   return response.data;
 }
 
 const getArticle = async (id) => {
-  const response = await axios.get(`${API_URL}/articles/${id}`, headers)
+  const response = await axiosPrivate.get(`${API_URL}/articles/${id}`)
 
   return response.data
 }
 
 const createArticle = async (article) => {
-  if (article.image) {
-    headers["headers"]["Content-Type"] = "multipart/form-data"
-  }
-
-  const response = await axios.post(`${API_URL}/articles`, {
+  const response = await axiosPrivate.post(`${API_URL}/articles`, {
     article: article
-  }, headers)
+  }, { headers: { "Content-Type": "multipart/form-data" }})
 
   return response.data
 }
 
 const updateArticle = async (article, articleID) => {
-  if(article.image){
-    headers["headers"]["Content-Type"] = "multipart/form-data"
-  }
-
-  const response = await axios.patch(`${API_URL}/articles/${articleID}`, {
+  const response = await axiosPrivate.patch(`${API_URL}/articles/${articleID}`, {
     article: article
-  }, headers)
+  }, { headers: { "Content-Type": "multipart/form-data" } })
 
   return response.data
 }
 
 const deleteArticle = async (articleID) => {
-  const response = await axios.delete(`${API_URL}/articles/${articleID}`, headers)
+  const response = await axiosPrivate.delete(`${API_URL}/articles/${articleID}`)
     
   return response.data
 }

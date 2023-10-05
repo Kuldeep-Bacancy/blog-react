@@ -1,11 +1,11 @@
-import axios from "axios";
 import config from '../config/config';
-import authHeader from "./authHeader";
+import { axiosPublic } from "../common/axiosPublic.js";
+import { axiosPrivate } from '../common/axiosPrivate';
 
 const API_URL = config.backendURL
 
 const register = async (email, password) => {
-  const response = await axios.post(`${API_URL}/signup`, {
+  const response = await axiosPublic.post(`${API_URL}/signup`, {
     user: {
       email: email,
       password: password,
@@ -16,7 +16,7 @@ const register = async (email, password) => {
 };
 
 const login = async (email, password) => {
-  const response = await axios.post(`${API_URL}/login`, {
+  const response = await axiosPublic.post(`${API_URL}/login`, {
     user: {
       email: email,
       password: password
@@ -27,7 +27,7 @@ const login = async (email, password) => {
 };
 
 const logout = async () => {
-  const response = await axios.delete(`${API_URL}/logout`, { headers: authHeader() });
+  const response = await axiosPrivate.delete(`${API_URL}/logout`);
 
   if (response.data.status_code === 200){
     localStorage.removeItem("token");
