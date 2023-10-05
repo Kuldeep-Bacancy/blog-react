@@ -2,14 +2,19 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import authService from '../../services/auth'
 import { logout } from '../../store/authSlice'
+import { useNavigate } from 'react-router-dom'
 
 function Logout() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const logoutHandler = () => {
-    authService.logout()
-    .then(() => dispatch(logout()))
-    .catch((err) => console.log(err))
+  const logoutHandler = async() => {
+    const response = await authService.logout()
+    
+    if(response.status_code === 200){
+      dispatch(logout())
+      navigate("/login")
+    }
   }
 
   return (
