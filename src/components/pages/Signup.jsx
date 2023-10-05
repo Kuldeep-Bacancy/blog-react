@@ -4,26 +4,32 @@ import { useForm } from "react-hook-form"
 import { Button, Input, Logo } from "../index"
 import { Link, useNavigate } from 'react-router-dom'
 import ErrorMessage from '../ErrorMessage'
+import Loader from "../Loader";
 import { toast } from 'react-toastify';
 
 function Signup() {
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate()
   const [error, setError] = useState('')
   const { register, handleSubmit, formState } = useForm();
   const { errors } = formState;
 
   const signupHandler = async(data) => {
+    setIsLoading(true)
     try {
       const { email, password } = data;
       const response = await authService.register(email, password)
 
-      if (response.status_code === 200) { 
+      if (response.status_code === 200) {
+        setIsLoading(false)
         navigate('/login')
         toast.success('Signup Successfully!', { autoClose: 3000 })
       } else {
+        setIsLoading(false)
         setError(response.message)
       }
     } catch (error) {
+      setIsLoading(false)
       setError(error.message)
     }
     
@@ -31,6 +37,7 @@ function Signup() {
 
   return (
     <div className="flex items-center justify-center">
+      {isLoading && <Loader />}
       <div className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}>
         <div className="mb-2 flex justify-center">
           <span className="inline-block w-full max-w-[100px]">
