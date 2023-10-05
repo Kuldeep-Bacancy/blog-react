@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form"
 import { Button, Input, Logo } from "../index"
 import { Link, useNavigate } from 'react-router-dom'
 import ErrorMessage from '../ErrorMessage'
+import { toast } from 'react-toastify';
 
 function Signup() {
   const navigate = useNavigate()
@@ -18,6 +19,7 @@ function Signup() {
 
       if (response.status_code === 200) { 
         navigate('/login')
+        toast.success('Signup Successfully!', { autoClose: 3000 })
       } else {
         setError(response.message)
       }
