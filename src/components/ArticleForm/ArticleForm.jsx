@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import articleService from "../../services/article";
 import ErrorMessage from "../ErrorMessage";
 import Loader from "../Loader";
+import { toast } from 'react-toastify';
 
 export default function ArticleForm({ article }) {
   const [isLoading, setIsLoading] = useState(false);
@@ -29,6 +30,7 @@ export default function ArticleForm({ article }) {
       if (response.status_code === 200) {
         setIsLoading(false)
         navigate(`/article/${response.data.id}`);
+        toast.success('Article Updated Successfully!', { autoClose: 3000 })
       }
     } else {
       setIsLoading(true)
@@ -38,6 +40,7 @@ export default function ArticleForm({ article }) {
       if (response.status_code === 200) {
         setIsLoading(false)
         navigate(`/article/${response.data.id}`);
+        toast.success('Article Saved Successfully!', { autoClose: 3000 })
       }
     }
   };

@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form"
 import { Button, Input, Logo } from "../index"
 import { Link, useNavigate } from 'react-router-dom'
 import ErrorMessage from '../ErrorMessage'
+import { toast } from 'react-toastify';
 
 function Login() {
   const navigate = useNavigate();
@@ -24,11 +25,14 @@ function Login() {
         dispatch(authLogin(response.data))
         localStorage.setItem("token", JSON.stringify(response.data.token));
         navigate("/")
+        toast.success('Login Successfully!', { autoClose: 3000 })
       } else {
         setError(response.message)
+        toast.error(response.message, { autoClose: 3000 })
       }
     } catch (error) {
       setError(error.message)
+      toast.error(error.message, { autoClose: 3000 })
     }
 
 

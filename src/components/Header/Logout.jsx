@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import authService from '../../services/auth'
 import { logout } from '../../store/authSlice'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 function Logout() {
   const navigate = useNavigate();
@@ -14,6 +15,7 @@ function Logout() {
     if(response.status_code === 200){
       dispatch(logout())
       navigate("/login")
+      toast.success('Logout Successfully!', { autoClose: 3000 })
     }
   }
 
